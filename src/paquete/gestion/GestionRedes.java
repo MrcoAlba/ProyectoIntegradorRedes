@@ -1,70 +1,78 @@
-
 package paquete.gestion;
 
-import java.util.Random;
-import javax.swing.JOptionPane;
-import paquete.clases.*;
+import java.util.Random;        //Se importa para utilizar la clase Ramdon.
+import javax.swing.JOptionPane; //Se importa para poder mostrar ventanas emergentes que se utilizará en el futuro (JFrame Form).
+import paquete.clases.*;        //Se importa el paquete clases para hacer uso de las clases creadas.
 
 public class GestionRedes {
     private Router[] arreglo;
     private int cont;
-
+    //Router[] arreglo -> Se crea un arreglo llamado "arreglo" en el que se almacenará objetos de tipo "Router"
+    //int cont -> Se creará un contador "cont" que almacenará la el número de routers agregados al arreglo "arreglo"
+    
+    
+    //Se crea el metodo constructor de la clase.
     public GestionRedes(int cont) {
-        arreglo = new Router[50];
-        cont=0;
+        arreglo = new Router[50];   //Se establecen 50 routers como maximo, a pesar de que el algoritmo solo sería eficiente hasta el router 15 (Explicacion Teoria).
+        cont=0;                     //Se inicial el objeto con el contador a 0 siempre.
     }
-
-    public Router[] getArreglo() {
+    
+    
+    //Se crean los metodos getters y setters de la clase.
+    public Router[]     getArreglo() {
         return arreglo;
     }
-
-    public void setArreglo(Router[] arreglo) {
+    public void         setArreglo(Router[] arreglo) {
         this.arreglo = arreglo;
     }
-
-    public int getCont() {
+    public int          getCont() {
         return cont;
     }
-
-    public void setCont(int cont) {
+    public void         setCont(int cont) {
         this.cont = cont;
     }
     
+    
+    //Se crea el metodo IngresarRouter, en el que se agregará un router al arreglo "arreglo" siempre y cuando el contador "cont" sea menor a 50.
     public void IngresarRouter(Router obj)
     {
-        if(cont<300)
+        if(cont<300) // SERGIO---------------300 <- 50------------------------------------------------------------------------------------------
         {
             arreglo[cont]=obj;
             cont++;
         }
-        else
+        else        //Si la condición no se cumple, una ventana emergente informará que no existe más espacio para almacenar otro router.
         {
             JOptionPane.showMessageDialog(null, "No existe espacio para mas routers");
         }
     }
     
+    
+    //Se eliminará un router por medio de: Ingreso de una variable String con el nickname a eliminar.
     public void EliminarPorNick(String nick)
     {
-        int conf;
+        int conf;                                               //Se crea una variable "conf" que almacenará el mismo valor que tiene el contador "cont" (solo se usa en el condicional final)
         conf=cont;
-        for(int i=0;i<cont;i++)
+        for(int i=0;i<cont;i++)                                 //Se hará un recorrido arreglo "arreglo", para encontrar al router que tenga el nickName igual al que se ingresó para eliminar.
         {
-            if(arreglo[i].getNickname().equalsIgnoreCase(nick))
+            if(arreglo[i].getNickname().equalsIgnoreCase(nick)) //Si se encuentra el router con nickname igual->
             {
-                for(int j=i;j<cont-1;j++)
+                for(int j=i;j<cont-1;j++)                       //Se eliminará del arreglo y se llenará su espacio con los routers que están más adelante. OJO!!! -> TOMAR EN CUENTA QUE SE PUEDE ELIMINAR MÁS DE UN ROUTER CON EL MISMO NOMBRE, POR LO QUE SE RECOMIENDA NO REPETIR EL MISMO NICKNAME
                 {
                     arreglo[j]=arreglo[j+1];
                 }
-                arreglo[cont]=null;
-                cont--;
+                arreglo[cont]=null;                             //Se eliminará el último objeto del arreglo "arreglo" porque estará duplicado
+                cont--;                                         //Se disminuirá el contador y así se sabrá que se elimino un router
             }
         }
-        if (conf==cont){
+        if (conf==cont){                                        //Si "conf" y "cont" son iguales, significa que no se ha eliminado ningún router.
             JOptionPane.showMessageDialog(null, "No existe el router");
-        }else{
+        }else{                                                  //Por lo menos se ha eliminado 1 router -> MIRAR *OJO!!!* de arriba
             JOptionPane.showMessageDialog(null, "Se eliminó correctamente el router");
         }
     }
+    
+    
     
     public void BusquedaRedR (){
         int pos,confl,conRR,rec;
@@ -72,27 +80,28 @@ public class GestionRedes {
         conRR=0;
         confl=0;
         pos=0;
-        for(int i=0;i<cont;i++){
-            for (int j = 0; j < cont; j++) {
-                if(arreglo[i].getNickname().equalsIgnoreCase(arreglo[j].getNickname())==false){
-                    for (int k = 0; k < arreglo[i].getContRedesV(); k++) {
-                        for (int ki = 0; ki < arreglo[j].getContRedesV(); ki++) {
-                            if(arreglo[i].RedesV[k].equalsIgnoreCase(arreglo[j].RedesV[ki])){
-                                pos=ki;
-                                if(pos==(arreglo[j].getContRedesV()-1)){
-                                    pos=-1;
+        
+        for(int i=0;i<cont;i++){                                                                                //Se recorren todos los router en el arreglo con variable i
+            for (int j = 0; j < cont; j++) {                                                                    //Se recorrerá todos los routers en el arreglo con variable j
+                if(arreglo[i].getNickname().equalsIgnoreCase(arreglo[j].getNickname())==false){                 //Siempre que no sea el mismo router ----------SE PUEDE CAMBIAR ESTO, POR SOLAMENTE COMPARAR i y j****************
+                    for (int k = 0; k < arreglo[i].getContRedesV(); k++) {                                      //Se recorrerá el arreglo->Router->*contador de redes* del router con variable i
+                        for (int ki = 0; ki < arreglo[j].getContRedesV(); ki++) {                               //Se recorrerá el arreglo->Router->*contador de redes* del router con variable j
+                            if(arreglo[i].RedesV[k].equalsIgnoreCase(arreglo[j].RedesV[ki])){                   //Si el Router[i]->RedVecina[k] es igual al del Router[j]->RedVecina[ki]
+                                pos=ki;                                                                         //Se guardará temporalmente el valor de ki (# red vecina del segundo router) en "pos"
+                                if(pos==(arreglo[j].getContRedesV()-1)){                                        //Si pos (# red vecina del segundo router) es igual al numero de redes vecinas del mismo router -1
+                                    pos=-1;                                                                     //Se almacenará -1 en pos
                                 }
-                                conx=true;
+                                conx=true;                                                                      //será un booleano que informe que el router "i" y el router "j", tiene redVecina igual
                             }
                         }
                     }
-                    if (conx==true){
-                        rec=0;
-                        if (pos!=-1){
-                            for (int k = arreglo[i].contRedesR; k < arreglo[j].getContRedesV()-1; k++) {
-                                arreglo[i].RedesR[k]=arreglo[j].RedesV[rec];
-                                arreglo[i].hopR[k]=2;
-                                rec++;
+                    if (conx==true){                                                                            //Solo entraran el router "i" y "j" que tengan una red en común.
+                        rec=0;                                                                                  //Se reinicia variable "rec" a 0.
+                        if (pos!=-1){                                                                           //Si la red encontrada similar en "j" con "i" es la penúltima...
+                            for (int k = arreglo[i].contRedesR; k < arreglo[j].getContRedesV()-1; k++) {        //Se comenzará en ("contador de redes remotas del router "i""), hasta el ("contador de redes vecinas de "j"-1")
+                                arreglo[i].RedesR[k]=arreglo[j].RedesV[rec];                                    //Se comenzará a añadir las redes vecinas del router "j" en el router "i" 
+                                arreglo[i].hopR[k]=2;                                                           //Se establece el hop como 2 debido a que son vecinas de sus vecinas.
+                                rec++;                                                                          //aumenta contador 
                             }
                         }else{
                             for (int k = arreglo[i].contRedesR; k < pos; k++) {
