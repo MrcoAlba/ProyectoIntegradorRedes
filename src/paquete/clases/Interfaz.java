@@ -42,5 +42,18 @@ public class Interfaz {
     public void     setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return 
+                "\nred="        + red       + 
+                "\nip="         + ip        + 
+                "\nmascara="    + mascara   + 
+                "\nnombre="     + nombre    ;
+    }
+    
+    
+    
+    
     
 }
