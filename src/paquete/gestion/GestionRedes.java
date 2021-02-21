@@ -12,7 +12,7 @@ public class GestionRedes {
     
     
     //Se crea el metodo constructor de la clase.
-    public GestionRedes(int cont) {
+    public GestionRedes() {
         arreglo = new Router[50];   //Se establecen 50 routers como maximo, a pesar de que el algoritmo solo sería eficiente hasta el router 15 (Explicacion Teoria).
         cont=0;                     //Se inicial el objeto con el contador a 0 siempre.
     }
@@ -67,9 +67,63 @@ public class GestionRedes {
     }
     
     
+    public void BusquedaIpsV (){
+        for (int i = 0; i < cont; i++) {
+            for (int j = 0; j < this.arreglo[i].getContRedesV(); j++) {
+                for (int k = 0; k < cont; k++) {
+                    for (int l = 0; l < this.arreglo[k].getContRedesV(); l++) {
+                        if(i!=k){
+                            if(this.arreglo[i].getRedesVecinas()[j].equalsIgnoreCase(this.arreglo[k].getRedesVecinas()[l])){
+                                this.arreglo[i].IpsV[this.arreglo[i].getContIpsV()]=this.arreglo[k].getIpsPropias()[l];
+                                this.arreglo[i].IpsHopV[this.arreglo[i].getContIpsV()]=1;
+                                this.arreglo[i].setContIpsV(this.arreglo[i].getContIpsV()+1);
+                            }    
+                        }
+                    }
+                }
+            }
+        }
+    }
     
-    public void BusquedaRedR (){
-        int pos,confl,conRR,rec;
+    
+    public void BusquedaIpsR (){
+        
+        boolean aux1=false;
+        
+        for (int i = 0; i < cont; i++) {
+            for (int j = 0; j < this.arreglo[i].getContRedesV(); j++) {
+                for (int k = 0; k < cont; k++) {
+                    for (int l = 0; l < this.arreglo[k].getContRedesV(); l++) {
+                        
+                        if(this.arreglo[i].getRedesVecinas()[j].equalsIgnoreCase(this.arreglo[k].getRedesVecinas()[l])){
+                            
+                            for (int m = 0; m < this.arreglo[i].getContRedesV(); m++) {
+                                for (int n = 0; n < this.arreglo[k].getContRedesV(); n++) {
+                                    if(this.arreglo[i].getIpsV()[m].equalsIgnoreCase(this.arreglo[k].getIpsPropias()[n])==false){
+                                        for (int o = 0; o < this.arreglo[i].getContIpsR(); o++) {
+                                            if(this.arreglo[i].getIpsR()[o].equalsIgnoreCase(this.arreglo[k].getIpsPropias()[n])){
+                                                aux1=true;
+                                            }
+                                        }
+                                        if(aux1==false){
+                                            this.arreglo[i].IpsR[this.arreglo[i].getContIpsR()]=this.arreglo[k].getIpsPropias()[n];
+                                        }
+                                        aux1=true;
+                                    }
+                                }
+                            }
+                            
+                        }
+                        
+                    }
+                }
+            }
+        }
+        
+        
+        
+        
+        /*int pos,confl,conRR,rec;
         boolean conx=false;
         conRR=0;
         confl=0;
@@ -80,7 +134,7 @@ public class GestionRedes {
                 if(i!=j){                                                                                       //Siempre que no sea el mismo router
                     for (int k = 0; k < arreglo[i].getContRedesV(); k++) {                                      //Se recorrerá el arreglo->Router->*contador de redes* del router con variable i
                         for (int ki = 0; ki < arreglo[j].getContRedesV(); ki++) {                               //Se recorrerá el arreglo->Router->*contador de redes* del router con variable j
-                            if(arreglo[i].RedesV[k].equalsIgnoreCase(arreglo[j].RedesV[ki])){                   //Si el Router[i]->RedVecina[k] es igual al del Router[j]->RedVecina[ki]                                                                                                      
+                            if(arreglo[i].IpsV[k].equalsIgnoreCase(arreglo[j].IpsV[ki])){                   //Si el Router[i]->RedVecina[k] es igual al del Router[j]->RedVecina[ki]                                                                                                      
                                 if(ki==(arreglo[j].getContRedesV()-1)){                                        //Si pos (# red vecina del segundo router) es igual al numero de redes vecinas del mismo router -1
                                     pos=-1;                                                                     //Se almacenará -1 en pos
                                 }else if(ki==0){
@@ -96,32 +150,31 @@ public class GestionRedes {
                         rec=0;                                                                                  //Se reinicia variable "rec" a 0.
                         if (pos!=-1){                                                                           //Si la red encontrada similar en "j" con "i" es la penúltima...
                             for (int k = arreglo[i].contRedesR; k < arreglo[j].getContRedesV()-1; k++) {        //Se comenzará en ("contador de redes remotas del router "i""), hasta el ("contador de redes vecinas de "j"-1")
-                                arreglo[i].RedesR[k]=arreglo[j].RedesV[rec];                                    //Se comenzará a añadir las redes vecinas del router "j" en el router "i" 
-                                arreglo[i].hopR[k]=2;                                                           //Se establece el hop como 2 debido a que son vecinas de sus vecinas.
+                                arreglo[i].IpsR[k]=arreglo[j].IpsV[rec];                                    //Se comenzará a añadir las redes vecinas del router "j" en el router "i" 
+                                arreglo[i].IpsHopR[k]=2;                                                           //Se establece el hop como 2 debido a que son vecinas de sus vecinas.
                                 rec++;                                                                          //aumenta contador 
                             }
                         }else if (pos!=-2){                                                                           
                             for (int k = 1; k < arreglo[j].getContRedesV(); k++) {        
-                                arreglo[i].RedesR[k]=arreglo[j].RedesV[rec];                                    
-                                arreglo[i].hopR[k]=2;                                                           
+                                arreglo[i].IpsR[k]=arreglo[j].IpsV[rec];                                    
+                                arreglo[i].IpsHopR[k]=2;                                                           
                                 rec++;                                                                          
                             }
                         }else{
                             for (int k = arreglo[i].contRedesR; k < pos; k++) {
-                                arreglo[i].RedesR[k]=arreglo[j].RedesV[rec];
-                                arreglo[i].hopR[k]=2;
+                                arreglo[i].IpsR[k]=arreglo[j].IpsV[rec];
+                                arreglo[i].IpsHopR[k]=2;
                                 rec++;
                             }
                             for (int k = arreglo[i].contRedesR+rec-1; k < arreglo[j].getContRedesV(); k++) {
-                                arreglo[i].RedesR[k]=arreglo[j].RedesV[rec+1];
-                                arreglo[i].hopR[k]=2;
+                                arreglo[i].IpsR[k]=arreglo[j].IpsV[rec+1];
+                                arreglo[i].IpsHopR[k]=2;
                                 rec++;
                             }
                         }
                     }
                 }
             }
-        }
+        }*/
     }
-    
 }
