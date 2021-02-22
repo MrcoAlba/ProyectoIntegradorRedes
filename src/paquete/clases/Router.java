@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.*;
 
 public class Router{
+    
     public ArrayList<Interfaz> interfaces;
     public String nickname;
     
@@ -31,12 +32,12 @@ public class Router{
     public Router(String nickname) {
         this.nickname = nickname;
         IpsPropias          = new String[3];
-        RedesVecinas        = new String[3];
+        RedesVecinas        = new String[3];                //MÁXIMA CANTIDAD DE RESDES QUE SE PUEDEN INGRESAR EN CISCO PACKET TRACER: 3
         interfaces          = new ArrayList<Interfaz>();
         
         RTip                = new String[50];
         RTred               = new String[50];
-        RTnombreRouter      = new String[50];
+        RTnombreRouter      = new String[50];               //COMO MAXIMO EN LAS TOPOLOGIAS QUE IMPLEMENTAN RIP PUEDEN HABER HASTA 45 GATEWAYS
         RTinterfazSalida    = new String[50];
         RTnextHop           = new String[50];
         RThop               = new int[50];
@@ -105,7 +106,7 @@ public class Router{
     public void     setRTnextHop(String[] RTnextHop) {
         this.RTnextHop = RTnextHop;
     }
-    public int[] getRThop() {
+    public int[]    getRThop() {
         return RThop;
     }
     public void     setRThop(int[] RThop) {
@@ -142,8 +143,7 @@ public class Router{
         this.contRedesV=i;
     }
     
-    public void InicializarTablaDeRuteo()
-    {
+    public void InicializarTablaDeRuteo(){
         for (int i = 0; i < contRedesV; i++) {
             this.RTip[i] = this.IpsPropias[i];
             this.RTred[i] = this.RedesVecinas[i];

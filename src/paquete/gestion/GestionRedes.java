@@ -13,7 +13,7 @@ public class GestionRedes {
     
     //Se crea el metodo constructor de la clase.
     public GestionRedes() {
-        arreglo = new Router[50];   //Se establecen 50 routers como maximo, a pesar de que el algoritmo solo sería eficiente hasta el router 15 (Explicacion Teoria).
+        arreglo = new Router[20];   //Se establecen 20 routers como maximo, a pesar de que el algoritmo solo sería eficiente hasta el router 15 (Explicacion Teoria).
         cont=0;                     //Se inicial el objeto con el contador a 0 siempre.
     }
     
@@ -36,7 +36,7 @@ public class GestionRedes {
     //Se crea el metodo IngresarRouter, en el que se agregará un router al arreglo "arreglo" siempre y cuando el contador "cont" sea menor a 50.
     public void IngresarRouter(Router obj)
     {
-        if(cont<50){
+        if(cont<20){
             arreglo[cont]=obj;
             cont++;
         }else{       //Si la condición no se cumple, una ventana emergente informará que no existe más espacio para almacenar otro router.
@@ -66,13 +66,11 @@ public class GestionRedes {
         }
     }
     
-    public void EXTRA(){
-        this.arreglo[0].RTip[this.arreglo[0].RTcontIngresados]="hola";
-    }
     
     public void IntercambioTablasRouteo (){
         
         boolean AK=false;
+        
         int auxEmisor=0;
         int auxReceptor=0;
         String auxInterfazSalida="";
@@ -90,8 +88,8 @@ public class GestionRedes {
         do {
             AK=false;
             
-            for (int i = 0; i < cont; i++) {
-                for (int j = 0; j < cont; j++) {
+            for (int i = 0; i < cont; i++) {                //ESTE ES EL ORDEN DEL ROUTER QUE ENVIARA SU TABLA DE ROUTEO
+                for (int j = 0; j < cont; j++) {            //ESTE ES EL ORDEN DEL ROUTER QUE RECIBIRA LA TABLA DE ROUTEO Y DECIDIRA SI QUIERE COPIAR O CAMBIAR ALGO
                     
                     if (i!=j) {
                         

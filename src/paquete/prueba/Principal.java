@@ -28,6 +28,8 @@ public class Principal {
         
         
         
+        
+        
         R1.Adicionar(R1I1);
         R1.Adicionar(R1I2);
         R1.GenerarIpsPropiasyRedesVecinas();
@@ -50,6 +52,8 @@ public class Principal {
         
         
         
+        
+        
         GestionRedes GR1 = new GestionRedes();
         
         GR1.IngresarRouter(R1);
@@ -57,10 +61,8 @@ public class Principal {
         GR1.IngresarRouter(R3);
         GR1.IngresarRouter(R4);
         
-        //GR1.EXTRA();
         
-        GR1.IntercambioTablasRouteo();
-        
+        //GR1.IntercambioTablasRouteo();
         
         
         
