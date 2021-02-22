@@ -7,40 +7,39 @@ import java.util.*;
 public class Router{
     public ArrayList<Interfaz> interfaces;
     public String nickname;
+    
     public String [] IpsPropias;
-    
     public String [] RedesVecinas;
-    public String [] RedesRemotas;
     public int contRedesV=0;
-    public int contRedesR=0;
     
-    public String [] IpsV;
-    public String [] IpsR;
-    public int contIpsV=0;
-    public int contIpsR=0;
-    public int [] IpsHopV;
-    public int [] IpsHopR;
+    public String [] RTip;
+    public String [] RTred;
+    public String [] RTnombreRouter;
+    public String [] RTinterfazSalida;
+    public String [] RTnextHop;
+    public int [] RThop;
+    public int RTcontIngresados=0;
+    
+    
     // ArrayList<Interfaz> interfaces -> Creada con la finalidad de almacenar un numero variable de interfaces por router.
-    // int contRedesV=0 -> Creado con la finalidad de contar el numero de redes VECINAS que tiene el router. Se establece 0 y aumenta al añadir una interfaz.
-    // int contRedesR=0 -> Creado con la finalidad de contar el numero de redes REMOTAS que tiene el router. El número aumenta en la clase gestion.
-    // String nickname -> Creada con la finalidad de tener un pseudonido del router. Ejms: R1, R2, ...
-    // String [] IpsV -> Creada con la finalidad de almacenar las redes VECINAS existentes en la topologia.
-    // String [] IpsR -> Creada con la finalidad de almacenar las redes REMOTAS existentes en la topologia.
-    // int [] IpsHopV -> Creado con la finalidad de saber cuantos saltos (hops) se necesita dar para llegar a la red VECINA. Siempre es uno por teoria.
-    // int [] IpsHopR -> Creado con la finalidad de saber cuantos saltos (hops) se necesita dar para llegar a una red REMOTA. El numero es variable y se genera en la clase GestionRedes.
+    // String nickname -> Creada con la finalidad de tener un pseudonimo del router. Ejms: R1, R2, ...
+    
+    
     
     
     //Se crea un metodo constructor.
     public Router(String nickname) {
         this.nickname = nickname;
-        IpsPropias = new String[100];
-        RedesVecinas = new String[100];      //Se establece el numero de redes vecinas de 100 a pesar de que los routers solo ofrezcan un maximo de 3 interfaces de conexion.
-        RedesRemotas = new String[100];      //Se establece el numero de redes remotas a 100, a pesar de que el algoritmo Vector-Distancia (aplicado en RIPv2) no permita mas de 15 nodos por topologia.
-        IpsV = new String[100];              //Se establece el numero de Ips vecinas de 100 a pesar de que los routers solo ofrezcan un maximo de 3 interfaces de conexion.
-        IpsR = new String[100];              //Se establece el numero de Ips remotas a 100, a pesar de que el algoritmo Vector-Distancia (aplicado en RIPv2) no permita mas de 15 nodos por topologia.
-        IpsHopV = new int[100];              //Se establece un arreglo de 100 debido a la explicación previa
-        IpsHopR = new int[100];              //Se establece un arreglo de 100 debido a la explicación previa
-        interfaces = new ArrayList<Interfaz>();
+        IpsPropias          = new String[3];
+        RedesVecinas        = new String[3];
+        interfaces          = new ArrayList<Interfaz>();
+        
+        RTip                = new String[50];
+        RTred               = new String[50];
+        RTnombreRouter      = new String[50];
+        RTinterfazSalida    = new String[50];
+        RTnextHop           = new String[50];
+        RThop               = new int[50];
     }
     
     
@@ -51,41 +50,11 @@ public class Router{
     public void     setNickname(String nickname) {
         this.nickname = nickname;
     }
-    public String[] getIpsV() {
-        return IpsV;
-    }
-    public void     setIpsV(String[] IpsV) {
-        this.IpsV = IpsV;
-    }
-    public String[] getIpsR() {
-        return IpsR;
-    }
-    public void     setRedes(String[] RedesR) {
-        this.IpsR = RedesR;
-    }
     public int      getContRedesV() {
         return contRedesV;
     }
     public void     setContRedesV(int contRedesV) {
         this.contRedesV = contRedesV;
-    }
-    public int      getContRedesR() {
-        return contRedesR;
-    }
-    public void     setContRedesR(int contRedesR) {
-        this.contRedesR = contRedesR;
-    }
-    public int[]    getIpsHopV() {
-        return IpsHopV;
-    }
-    public void     setIpsHopV(int[] IpsHopV) {
-        this.IpsHopV = IpsHopV;
-    }
-    public int[]    getIpsHopR() {
-        return IpsHopR;
-    }
-    public void     setIpsHopR(int[] IpsHopR) {
-        this.IpsHopR = IpsHopR;
     }
     public ArrayList<Interfaz> getInterfaces() {
         return interfaces;
@@ -99,32 +68,55 @@ public class Router{
     public void     setRedesVecinas(String[] RedesVecinas) {
         this.RedesVecinas = RedesVecinas;
     }
-    public String[] getRedesRemotas() {
-        return RedesRemotas;
-    }
-    public void     setRedesRemotas(String[] RedesRemotas) {
-        this.RedesRemotas = RedesRemotas;
-    }
-    public int      getContIpsV() {
-        return contIpsV;
-    }
-    public void     setContIpsV(int contIpsV) {
-        this.contIpsV = contIpsV;
-    }
-    public int      getContIpsR() {
-        return contIpsR;
-    }
-    public void     setContIpsR(int contIpsR) {
-        this.contIpsR = contIpsR;
-    }
     public String[] getIpsPropias() {
         return IpsPropias;
     }
-    public void setIpsPropias(String[] IpsPropias) {
+    public void     setIpsPropias(String[] IpsPropias) {
         this.IpsPropias = IpsPropias;
     }
-    
-    
+
+    public String[] getRTip() {
+        return RTip;
+    }
+    public void     setRTip(String[] RTip) {
+        this.RTip = RTip;
+    }
+    public String[] getRTred() {
+        return RTred;
+    }
+    public void     setRTred(String[] RTred) {
+        this.RTred = RTred;
+    }
+    public String[] getRTnombreRouter() {
+        return RTnombreRouter;
+    }
+    public void     setRTnombreRouter(String[] RTnombreRouter) {
+        this.RTnombreRouter = RTnombreRouter;
+    }
+    public String[] getRTinterfazSalida() {
+        return RTinterfazSalida;
+    }
+    public void     setRTinterfazSalida(String[] RTinterfazSalida) {
+        this.RTinterfazSalida = RTinterfazSalida;
+    }
+    public String[] getRTnextHop() {
+        return RTnextHop;
+    }
+    public void     setRTnextHop(String[] RTnextHop) {
+        this.RTnextHop = RTnextHop;
+    }
+    public int[] getRThop() {
+        return RThop;
+    }
+    public void     setRThop(int[] RThop) {
+        this.RThop = RThop;
+    }
+    public int      getRTcontIngresados() {
+        return RTcontIngresados;
+    }
+    public void     setRTcontIngresados(int RTcontIngresados) {
+        this.RTcontIngresados = RTcontIngresados;
+    }
     
     
     
@@ -135,13 +127,13 @@ public class Router{
     }
     
     
-    //Se incluye el metodo GuardarRedes que sigue el siguiente algoritmo:
-    public void GuardarRedes()
+    
+    //Se incluye el metodo GenerarIpsPropiasyRedesVecinas que sigue el siguiente algoritmo:
+    public void GenerarIpsPropiasyRedesVecinas()
     {
         int i=0;                                                        //Se establece un contador que inicia en 0
         Iterator<Interfaz> puntero = interfaces.iterator();             //Se crea un iterador que recorrerá todo el arreglo
-        while(puntero.hasNext())                                        //Mientras hayan redes en el arreglo (recordar que las redes fueron agregadas arriba)
-        {
+        while(puntero.hasNext()){                                       //Mientras hayan redes en el arreglo (recordar que las redes fueron agregadas arriba)
             Interfaz a = puntero.next();                                //Se almacenaran los datos de la interfaz almacenada en una variable de tipo Interfaz
             RedesVecinas[i]=a.getRed();                                 //Se guardará los datos de *red* de la interfaz en el *arreglo de redes vecinas*.
             IpsPropias[i]=a.getIp();
@@ -149,24 +141,44 @@ public class Router{
         }
         this.contRedesV=i;
     }
-
+    
+    public void InicializarTablaDeRuteo()
+    {
+        for (int i = 0; i < contRedesV; i++) {
+            this.RTip[i] = this.IpsPropias[i];
+            this.RTred[i] = this.RedesVecinas[i];
+            this.RTnombreRouter[i] = this.nickname;
+            this.RTinterfazSalida[i] = this.IpsPropias[i];
+            this.RTnextHop[i] = this.IpsPropias[i];
+            this.RThop[i] = 0;
+            this.RTcontIngresados++;
+        }
+    }
+    
+    
+    
+    
     @Override
     public String toString() {
-        return
-                "\n\ninterfaces=" + interfaces.toString() + 
-                "\n\nnickname=" + nickname + 
-                "\n\nIpsPropias=" + Arrays.toString(IpsPropias) + 
-                "\n\nRedesVecinas=" + Arrays.toString(RedesVecinas) + 
-                "\n\nRedesRemotas=" + Arrays.toString(RedesRemotas) + 
-                "\n\ncontRedesV=" + contRedesV + 
-                "\n\ncontRedesR=" + contRedesR + 
-                "\n\nIpsV=" + Arrays.toString(IpsV) + 
-                "\n\nIpsR=" + Arrays.toString(IpsR) + 
-                "\n\ncontIpsV=" + contIpsV + 
-                "\n\ncontIpsR=" + contIpsR + 
-                "\n\nIpsHopV=" + Arrays.toString(IpsHopV) + 
-                "\n\nIpsHopR=" + Arrays.toString(IpsHopR) ;
+        return 
+                "\n------------------------------------------------------"+
+                "\n\t\tROUTER:"             + nickname                          +
+                "\n\nNickname="             + nickname                          + 
+                "\n\nInterfaces="           + interfaces.toString()             + 
+                "\n\nIpsPropias=\t"         + Arrays.toString(IpsPropias)       + 
+                "\nRedesVecinas=\t"         + Arrays.toString(RedesVecinas)     + 
+                "\nContRedesV=\t"           + contRedesV                        +
+                "\n\nRTip=\t\t\t"           + Arrays.toString(RTip)             + 
+                "\n\nRTred=\t\t\t"          + Arrays.toString(RTred)            + 
+                "\n\nRTnombreRouter=\t\t"   + Arrays.toString(RTnombreRouter)   + 
+                "\n\nRTinterfazSalida=\t"   + Arrays.toString(RTinterfazSalida) + 
+                "\n\nRTnextHop=\t\t"        + Arrays.toString(RTnextHop)        + 
+                "\n\nRThop=\t\t\t"          + Arrays.toString(RThop)            +
+                "\n\nIpsIngresadas=\t\t"  + RTcontIngresados                  +
+                "\n------------------------------------------------------\n\n";
     }
+    
+    
     
     
     

@@ -27,22 +27,26 @@ public class Principal {
         Router R4 = new Router("D");
         
         
+        
         R1.Adicionar(R1I1);
         R1.Adicionar(R1I2);
-        R1.GuardarRedes();
+        R1.GenerarIpsPropiasyRedesVecinas();
+        R1.InicializarTablaDeRuteo();
         
         R2.Adicionar(R2I1);
         R2.Adicionar(R2I2);
-        R2.GuardarRedes();
+        R2.GenerarIpsPropiasyRedesVecinas();
+        R2.InicializarTablaDeRuteo();
         
         R3.Adicionar(R3I1);
         R3.Adicionar(R3I2);
-        R3.GuardarRedes();
+        R3.GenerarIpsPropiasyRedesVecinas();
+        R3.InicializarTablaDeRuteo();
         
         R4.Adicionar(R4I1);
         R4.Adicionar(R4I2);
-        R4.GuardarRedes();
-        
+        R4.GenerarIpsPropiasyRedesVecinas();
+        R4.InicializarTablaDeRuteo();
         
         
         
@@ -53,14 +57,18 @@ public class Principal {
         GR1.IngresarRouter(R3);
         GR1.IngresarRouter(R4);
         
-        GR1.BusquedaIpsV();
-        //GR1.BusquedaIpsR();
+        //GR1.EXTRA();
+        
+        GR1.IntercambioTablasRouteo();
+        
         
         
         
         
         
         System.out.println(GR1.getArreglo()[0].toString());
+        System.out.println(GR1.getArreglo()[1].toString());
+        System.out.println(GR1.getArreglo()[2].toString());
         System.out.println(GR1.getArreglo()[3].toString());
         
     }

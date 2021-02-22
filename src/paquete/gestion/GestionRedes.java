@@ -66,115 +66,83 @@ public class GestionRedes {
         }
     }
     
-    
-    public void BusquedaIpsV (){
-        for (int i = 0; i < cont; i++) {
-            for (int j = 0; j < this.arreglo[i].getContRedesV(); j++) {
-                for (int k = 0; k < cont; k++) {
-                    for (int l = 0; l < this.arreglo[k].getContRedesV(); l++) {
-                        if(i!=k){
-                            if(this.arreglo[i].getRedesVecinas()[j].equalsIgnoreCase(this.arreglo[k].getRedesVecinas()[l])){
-                                this.arreglo[i].IpsV[this.arreglo[i].getContIpsV()]=this.arreglo[k].getIpsPropias()[l];
-                                this.arreglo[i].IpsHopV[this.arreglo[i].getContIpsV()]=1;
-                                this.arreglo[i].setContIpsV(this.arreglo[i].getContIpsV()+1);
-                            }    
-                        }
-                    }
-                }
-            }
-        }
+    public void EXTRA(){
+        this.arreglo[0].RTip[this.arreglo[0].RTcontIngresados]="hola";
     }
     
-    
-    public void BusquedaIpsR (){
+    public void IntercambioTablasRouteo (){
         
-        boolean aux1=false;
+        boolean AK=false;
+        int auxEmisor=0;
+        int auxReceptor=0;
+        String auxInterfazSalida="";
+        String auxNextHop="";
         
-        for (int i = 0; i < cont; i++) {
-            for (int j = 0; j < this.arreglo[i].getContRedesV(); j++) {
-                for (int k = 0; k < cont; k++) {
-                    for (int l = 0; l < this.arreglo[k].getContRedesV(); l++) {
+        boolean compartenRedVecina=false;
+        
+        boolean encontro=false;
+        int auxPosicionEmisor;
+        int auxPosicionReceptor;
+        
+        int aux10=0;
+        
+        
+        do {
+            AK=false;
+            
+            for (int i = 0; i < cont; i++) {
+                for (int j = 0; j < cont; j++) {
+                    
+                    if (i!=j) {
                         
-                        if(this.arreglo[i].getRedesVecinas()[j].equalsIgnoreCase(this.arreglo[k].getRedesVecinas()[l])){
-                            
-                            for (int m = 0; m < this.arreglo[i].getContRedesV(); m++) {
-                                for (int n = 0; n < this.arreglo[k].getContRedesV(); n++) {
-                                    if(this.arreglo[i].getIpsV()[m].equalsIgnoreCase(this.arreglo[k].getIpsPropias()[n])==false){
-                                        for (int o = 0; o < this.arreglo[i].getContIpsR(); o++) {
-                                            if(this.arreglo[i].getIpsR()[o].equalsIgnoreCase(this.arreglo[k].getIpsPropias()[n])){
-                                                aux1=true;
-                                            }
+                        compartenRedVecina=false;
+                        
+                        for (int k = 0; k < this.arreglo[i].contRedesV; k++) {
+                            for (int l = 0; l < this.arreglo[j].contRedesV; l++) {
+                                if(this.arreglo[i].RedesVecinas[k].equalsIgnoreCase(this.arreglo[j].RedesVecinas[l])){
+                                    compartenRedVecina=true;
+                                    auxEmisor=k;
+                                    auxReceptor=l;
+                                    auxInterfazSalida=this.arreglo[j].IpsPropias[l];
+                                    auxNextHop=this.arreglo[i].IpsPropias[k];
+                                }
+                            }
+                        }
+                        
+                        if(compartenRedVecina==true){
+                            for (int k = 0; k < this.arreglo[i].RTcontIngresados; k++) {
+                                encontro = false;
+                                for (int l = 0; l < this.arreglo[j].RTcontIngresados; l++) {
+
+                                    if(this.arreglo[i].RTip[k].equalsIgnoreCase(this.arreglo[j].RTip[l])){
+
+                                        if(this.arreglo[i].RThop[k]<this.arreglo[j].RThop[l]-1){
+                                            this.arreglo[j].RTinterfazSalida[l] = auxInterfazSalida;
+                                            this.arreglo[j].RTnextHop[l]        = auxNextHop;
+                                            this.arreglo[j].RThop[l]            = this.arreglo[i].RThop[k]+1;
+                                            AK=true;
                                         }
-                                        if(aux1==false){
-                                            this.arreglo[i].IpsR[this.arreglo[i].getContIpsR()]=this.arreglo[k].getIpsPropias()[n];
-                                        }
-                                        aux1=true;
+                                        encontro = true;
                                     }
                                 }
-                            }
-                            
-                        }
-                        
-                    }
-                }
-            }
-        }
-        
-        
-        
-        
-        /*int pos,confl,conRR,rec;
-        boolean conx=false;
-        conRR=0;
-        confl=0;
-        pos=0;
-        
-        for(int i=0;i<cont;i++){                                                                                //Se recorren todos los router en el arreglo con variable i
-            for (int j = 0; j < cont; j++) {                                                                    //Se recorrerá todos los routers en el arreglo con variable j
-                if(i!=j){                                                                                       //Siempre que no sea el mismo router
-                    for (int k = 0; k < arreglo[i].getContRedesV(); k++) {                                      //Se recorrerá el arreglo->Router->*contador de redes* del router con variable i
-                        for (int ki = 0; ki < arreglo[j].getContRedesV(); ki++) {                               //Se recorrerá el arreglo->Router->*contador de redes* del router con variable j
-                            if(arreglo[i].IpsV[k].equalsIgnoreCase(arreglo[j].IpsV[ki])){                   //Si el Router[i]->RedVecina[k] es igual al del Router[j]->RedVecina[ki]                                                                                                      
-                                if(ki==(arreglo[j].getContRedesV()-1)){                                        //Si pos (# red vecina del segundo router) es igual al numero de redes vecinas del mismo router -1
-                                    pos=-1;                                                                     //Se almacenará -1 en pos
-                                }else if(ki==0){
-                                    pos=-2;
-                                }else{
-                                    pos=ki; 
+                                if(encontro==false){
+                                    aux10=this.arreglo[j].RTcontIngresados;
+                                    this.arreglo[j].RTip[aux10]             = this.arreglo[i].RTip[k];
+                                    this.arreglo[j].RTred[aux10]            = this.arreglo[i].RTred[k];
+                                    this.arreglo[j].RTnombreRouter[aux10]   = this.arreglo[i].RTnombreRouter[k];
+                                    this.arreglo[j].RTinterfazSalida[aux10] = auxInterfazSalida;
+                                    this.arreglo[j].RTnextHop[aux10]        = auxNextHop;
+                                    this.arreglo[j].RThop[aux10]            = this.arreglo[i].RThop[k]+1;
+                                    this.arreglo[j].RTcontIngresados++;
+                                    AK=true;
                                 }
-                                conx=true;                                                                      //será un booleano que informe que el router "i" y el router "j", tiene redVecina igual
-                            }
-                        }
-                    }
-                    if (conx==true){                                                                            //Solo entraran el router "i" y "j" que tengan una red en común.
-                        rec=0;                                                                                  //Se reinicia variable "rec" a 0.
-                        if (pos!=-1){                                                                           //Si la red encontrada similar en "j" con "i" es la penúltima...
-                            for (int k = arreglo[i].contRedesR; k < arreglo[j].getContRedesV()-1; k++) {        //Se comenzará en ("contador de redes remotas del router "i""), hasta el ("contador de redes vecinas de "j"-1")
-                                arreglo[i].IpsR[k]=arreglo[j].IpsV[rec];                                    //Se comenzará a añadir las redes vecinas del router "j" en el router "i" 
-                                arreglo[i].IpsHopR[k]=2;                                                           //Se establece el hop como 2 debido a que son vecinas de sus vecinas.
-                                rec++;                                                                          //aumenta contador 
-                            }
-                        }else if (pos!=-2){                                                                           
-                            for (int k = 1; k < arreglo[j].getContRedesV(); k++) {        
-                                arreglo[i].IpsR[k]=arreglo[j].IpsV[rec];                                    
-                                arreglo[i].IpsHopR[k]=2;                                                           
-                                rec++;                                                                          
-                            }
-                        }else{
-                            for (int k = arreglo[i].contRedesR; k < pos; k++) {
-                                arreglo[i].IpsR[k]=arreglo[j].IpsV[rec];
-                                arreglo[i].IpsHopR[k]=2;
-                                rec++;
-                            }
-                            for (int k = arreglo[i].contRedesR+rec-1; k < arreglo[j].getContRedesV(); k++) {
-                                arreglo[i].IpsR[k]=arreglo[j].IpsV[rec+1];
-                                arreglo[i].IpsHopR[k]=2;
-                                rec++;
                             }
                         }
                     }
                 }
             }
-        }*/
+        } while (AK==true);
+        
     }
+    
 }

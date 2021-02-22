@@ -8,6 +8,7 @@ public class Interfaz {
     // String nombre -> Creada con la finalidad de almacenar por medio de un nombre sencillo el pseudonimo de la red. Ejm: red de nombre = *gig0/1*
     
     
+    
     //Se crea un método constructor.
     public Interfaz(String red, String ip, String mascara, String nombre) {
         this.red = red;
@@ -15,6 +16,7 @@ public class Interfaz {
         this.mascara = mascara;
         this.nombre = nombre;
     }
+    
     
     
     //Se crean los getters y setters de la clase Interfaz que luego serán utilizados en la clase GestionRedes
@@ -42,18 +44,16 @@ public class Interfaz {
     public void     setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    
+    
     @Override
     public String toString() {
         return 
-                "\nred="        + red       + 
-                "\nip="         + ip        + 
-                "\nmascara="    + mascara   + 
-                "\nnombre="     + nombre    ;
+                "\n\tred=\t\t"      + red       + 
+                "\n\tip=\t\t"       + ip        + 
+                "\n\tmascara=\t"    + mascara   + 
+                "\n\tnombre=\t\t"   + nombre    +
+                "\n"                            ;
     }
-    
-    
-    
-    
-    
 }
