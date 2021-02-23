@@ -819,7 +819,7 @@ public class Ejecutar extends javax.swing.JFrame {
             this.jLabel15.setText("------");
             JOptionPane.showMessageDialog(null, "No existe el router buscado, ingrese de nuevo");
         }else{
-            this.jTextField7.setText("");
+            this.jTextField7.setText("g");
         }
         
     }
