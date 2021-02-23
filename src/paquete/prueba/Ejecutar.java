@@ -817,9 +817,11 @@ public class Ejecutar extends javax.swing.JFrame {
         }
         if (b == 0) {
             this.jLabel15.setText("------");
-            JOptionPane.showMessageDialog(null, "No existe el router buscado");
+            JOptionPane.showMessageDialog(null, "No existe el router buscado, ingrese de nuevo");
+        }else{
+            this.jTextField7.setText("");
         }
-        this.jTextField7.setText("");
+        
     }
 
     public static void main(String args[]) {
