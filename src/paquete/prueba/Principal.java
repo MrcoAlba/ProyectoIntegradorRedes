@@ -50,34 +50,22 @@ public class Principal {
         RA.Adicionar(RAI1);
         RA.Adicionar(RAI2);
         RA.Adicionar(RAI3);
-        RA.GenerarIpsPropiasyRedesVecinas();
-        RA.InicializarTablaDeRuteo();
         
         RB.Adicionar(RBI1);
         RB.Adicionar(RBI2);
         RB.Adicionar(RBI3);
-        RB.GenerarIpsPropiasyRedesVecinas();
-        RB.InicializarTablaDeRuteo();
         
         RC.Adicionar(RCI1);
         RC.Adicionar(RCI2);
-        RC.GenerarIpsPropiasyRedesVecinas();
-        RC.InicializarTablaDeRuteo();
         
         RD.Adicionar(RDI1);
         RD.Adicionar(RDI2);
-        RD.GenerarIpsPropiasyRedesVecinas();
-        RD.InicializarTablaDeRuteo();
         
         RE.Adicionar(REI1);
         RE.Adicionar(REI2);
         RE.Adicionar(REI3);
-        RE.GenerarIpsPropiasyRedesVecinas();
-        RE.InicializarTablaDeRuteo();
         
         RF.Adicionar(RFI1);
-        RF.GenerarIpsPropiasyRedesVecinas();
-        RF.InicializarTablaDeRuteo();
         
         
         

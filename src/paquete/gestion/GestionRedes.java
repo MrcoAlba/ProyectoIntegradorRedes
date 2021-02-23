@@ -83,6 +83,13 @@ public class GestionRedes {
     //Se implementa el método IntercambioTablasRouteo en el cual se terminaran de llenar las tablas de todos los routers que hayan en el arreglo "arreglo"
     public void IntercambioTablasRouteo (){
         
+        for (int i = 0; i < cont; i++) {
+            this.arreglo[i].BorrarTodaTablaDeRouteo();          //Se limpiarán todas las tablas de routeos en todos los routers de la topología
+            this.arreglo[i].GenerarIpsPropiasyRedesVecinas();   //Se generarán los métodos necesarios de los routers
+            this.arreglo[i].InicializarTablaDeRuteo();          //Se generarán los métodos necesarios de los routers
+        }
+        
+        
         boolean AK=false;                   //Se usa para repetir todo el Do{}While de las lineas posteriores
         
         String auxInterfazSalida="";        //Almacenan las interfaces de salida para los routers receptores

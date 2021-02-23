@@ -186,6 +186,20 @@ public class Router{
     
     
     
+    public void BorrarTodaTablaDeRouteo(){
+        for (int i = 0; i < RTcontIngresados; i++) {                          //Gracias al método GenerarIpsPropiasyRedesVecinas habremos obtenido el número final de ipsPropias por lo cual daremos esa cantidad de vueltas y agregaremos los datos
+            this.RTip[i]                = null;                         //Se eliminan todos los datos
+            this.RTred[i]               = null;                         //Se eliminan todos los datos
+            this.RTnombreRouter[i]      = null;                         //Se eliminan todos los datos
+            this.RTnombreSalida[i]      = null;                         //Se eliminan todos los datos
+            this.RTinterfazSalida[i]    = null;                         //Se eliminan todos los datos
+            this.RTnextHop[i]           = null;                         //Se eliminan todos los datos
+            this.RThop[i]               = 0;                            //Se establecen todos los saltos a 0
+        }
+        this.RTcontIngresados=0;
+    }
+    
+    
     public String MostrarRT(String [] arreglito){
         String cadena="[ ";
         for (int i = 0; i < this.RTcontIngresados; i++) {
