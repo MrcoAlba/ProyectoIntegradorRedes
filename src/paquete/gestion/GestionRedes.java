@@ -139,8 +139,6 @@ public class GestionRedes {
                     }
                 }
             }
-        } while (AK==true);
-        
-    }
-    
+        } while (AK==true);   
+    } 
 }

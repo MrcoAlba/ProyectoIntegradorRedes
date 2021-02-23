@@ -24,9 +24,7 @@ public class Router{
     
     // ArrayList<Interfaz> interfaces -> Creada con la finalidad de almacenar un numero variable de interfaces por router.
     // String nickname -> Creada con la finalidad de tener un pseudonimo del router. Ejms: R1, R2, ...
-    
-    
-    
+
     
     //Se crea un metodo constructor.
     public Router(String nickname) {
@@ -118,17 +116,13 @@ public class Router{
     public void     setRTcontIngresados(int RTcontIngresados) {
         this.RTcontIngresados = RTcontIngresados;
     }
-    
-    
-    
+
     //Se incluye el metodo Adicionar para agregar objetos de la clase Interfaz
     public void Adicionar(Interfaz obj)
     {
         interfaces.add(obj);
     }
-    
-    
-    
+
     //Se incluye el metodo GenerarIpsPropiasyRedesVecinas que sigue el siguiente algoritmo:
     public void GenerarIpsPropiasyRedesVecinas()
     {
@@ -155,9 +149,6 @@ public class Router{
         }
     }
     
-    
-    
-    
     @Override
     public String toString() {
         return 
@@ -176,14 +167,5 @@ public class Router{
                 "\n\nRThop=\t\t\t"          + Arrays.toString(RThop)            +
                 "\n\nIpsIngresadas=\t\t"  + RTcontIngresados                  +
                 "\n------------------------------------------------------\n\n";
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }  
 }
