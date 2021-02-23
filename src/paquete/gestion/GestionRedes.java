@@ -72,9 +72,9 @@ public class GestionRedes {
             }
         }
         if (conf==cont){                                        //Si "conf" y "cont" son iguales, significa que no se ha eliminado ningún router.
-            JOptionPane.showMessageDialog(null, "No existe el router");
+            JOptionPane.showMessageDialog(null, "No existe el router","¡ERROR!",0);
         }else{                                                  //Por lo menos se ha eliminado 1 router -> MIRAR *OJO!!!* de arriba
-            JOptionPane.showMessageDialog(null, "Se eliminó correctamente el router");
+            JOptionPane.showMessageDialog(null, "Se eliminó correctamente el router","Felicitaciones",2);
         }
     }
     
