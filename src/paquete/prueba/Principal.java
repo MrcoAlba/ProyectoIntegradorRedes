@@ -9,60 +9,98 @@ import paquete.gestion.*;
 public class Principal {
     public static void main(String[] args) {
         
-        Interfaz R1I1 = new Interfaz("10.0.0.0", "10.0.0.2", "255.0.0.0", "R1I1N1");
-        Interfaz R1I2 = new Interfaz("20.0.0.0", "20.0.0.1", "255.0.0.0", "R1I2N2");
-        
-        Interfaz R2I1 = new Interfaz("10.0.0.0", "10.0.0.1", "255.0.0.0", "R2I1N1");
-        Interfaz R2I2 = new Interfaz("14.0.0.0", "14.0.0.1", "255.0.0.0", "R2I2N2");
-        
-        Interfaz R3I1 = new Interfaz("14.0.0.0", "14.0.0.2", "255.0.0.0", "R3I1N1");
-        Interfaz R3I2 = new Interfaz("22.0.0.0", "22.0.0.2", "255.0.0.0", "R3I2N2");
-        
-        Interfaz R4I1 = new Interfaz("22.0.0.0", "22.0.0.1", "255.0.0.0", "R4I1N1");
-        Interfaz R4I2 = new Interfaz("20.0.0.0", "20.0.0.2", "255.0.0.0", "R4I2N2");
-        
-        Router R1 = new Router("A");
-        Router R2 = new Router("B");
-        Router R3 = new Router("C");
-        Router R4 = new Router("D");
+        //PRIMERA TOPOLOGÍA EN NIVEL DE COMPLEJIDAD
         
         
         
+                    // CREACIÓN DE INTERFACES
+        Interfaz RAI1 = new Interfaz("10.0.0.0", "10.0.0.2", "255.0.0.0", "Gig0/0");
+        Interfaz RAI2 = new Interfaz("16.0.0.0", "16.0.0.1", "255.0.0.0", "Gig0/1");
+        Interfaz RAI3 = new Interfaz("20.0.0.0", "20.0.0.1", "255.0.0.0", "Gig0/2");
         
+        Interfaz RBI1 = new Interfaz("10.0.0.0", "10.0.0.1", "255.0.0.0", "Gig0/0");
+        Interfaz RBI2 = new Interfaz("12.0.0.0", "12.0.0.1", "255.0.0.0", "Gig0/1");
+        Interfaz RBI3 = new Interfaz("14.0.0.0", "14.0.0.1", "255.0.0.0", "Gig0/2");
         
-        R1.Adicionar(R1I1);
-        R1.Adicionar(R1I2);
-        R1.GenerarIpsPropiasyRedesVecinas();
-        R1.InicializarTablaDeRuteo();
+        Interfaz RCI1 = new Interfaz("14.0.0.0", "14.0.0.2", "255.0.0.0", "Gig0/0/0");
+        Interfaz RCI2 = new Interfaz("22.0.0.0", "22.0.0.2", "255.0.0.0", "Gig0/0/1");
         
-        R2.Adicionar(R2I1);
-        R2.Adicionar(R2I2);
-        R2.GenerarIpsPropiasyRedesVecinas();
-        R2.InicializarTablaDeRuteo();
+        Interfaz RDI1 = new Interfaz("20.0.0.0", "20.0.0.2", "255.0.0.0", "Gig0/0/0");
+        Interfaz RDI2 = new Interfaz("22.0.0.0", "22.0.0.1", "255.0.0.0", "Gig0/0/1");
         
-        R3.Adicionar(R3I1);
-        R3.Adicionar(R3I2);
-        R3.GenerarIpsPropiasyRedesVecinas();
-        R3.InicializarTablaDeRuteo();
+        Interfaz REI1 = new Interfaz("12.0.0.0", "12.0.0.2", "255.0.0.0", "Gig0/0");
+        Interfaz REI2 = new Interfaz("16.0.0.0", "16.0.0.2", "255.0.0.0", "Gig0/1");
+        Interfaz REI3 = new Interfaz("18.0.0.0", "18.0.0.1", "255.0.0.0", "Gig0/2");
         
-        R4.Adicionar(R4I1);
-        R4.Adicionar(R4I2);
-        R4.GenerarIpsPropiasyRedesVecinas();
-        R4.InicializarTablaDeRuteo();
-        
-        
+        Interfaz RFI1 = new Interfaz("18.0.0.0", "18.0.0.2", "255.0.0.0", "Gig0/0/0");
         
         
         
+                    // CREACIÓN DE ROUTERS
+        Router RA = new Router("A");
+        Router RB = new Router("B");
+        Router RC = new Router("C");
+        Router RD = new Router("D");
+        Router RE = new Router("E");
+        Router RF = new Router("F");
+        
+        
+        
+                    // INGRESO DE INTERFACES A ROUTERS Y CREACIÓN DE TABLA DE ROUTEO
+        RA.Adicionar(RAI1);
+        RA.Adicionar(RAI2);
+        RA.Adicionar(RAI3);
+        RA.GenerarIpsPropiasyRedesVecinas();
+        RA.InicializarTablaDeRuteo();
+        
+        RB.Adicionar(RBI1);
+        RB.Adicionar(RBI2);
+        RB.Adicionar(RBI3);
+        RB.GenerarIpsPropiasyRedesVecinas();
+        RB.InicializarTablaDeRuteo();
+        
+        RC.Adicionar(RCI1);
+        RC.Adicionar(RCI2);
+        RC.GenerarIpsPropiasyRedesVecinas();
+        RC.InicializarTablaDeRuteo();
+        
+        RD.Adicionar(RDI1);
+        RD.Adicionar(RDI2);
+        RD.GenerarIpsPropiasyRedesVecinas();
+        RD.InicializarTablaDeRuteo();
+        
+        RE.Adicionar(REI1);
+        RE.Adicionar(REI2);
+        RE.Adicionar(REI3);
+        RE.GenerarIpsPropiasyRedesVecinas();
+        RE.InicializarTablaDeRuteo();
+        
+        RF.Adicionar(RFI1);
+        RF.GenerarIpsPropiasyRedesVecinas();
+        RF.InicializarTablaDeRuteo();
+        
+        
+        
+        
+        
+        
+                    // CREACIÓN DE GESTIÓN DE REDES
         GestionRedes GR1 = new GestionRedes();
         
-        GR1.IngresarRouter(R1);
-        GR1.IngresarRouter(R2);
-        GR1.IngresarRouter(R3);
-        GR1.IngresarRouter(R4);
         
         
-        //GR1.IntercambioTablasRouteo();
+                    // INGRESO DE ROUTERS A GESTIÓN
+        GR1.IngresarRouter(RA);
+        GR1.IngresarRouter(RB);
+        GR1.IngresarRouter(RC);
+        GR1.IngresarRouter(RD);
+        GR1.IngresarRouter(RE);
+        GR1.IngresarRouter(RF);
+        
+        
+        
+                    // LOS ROUTERS INGRESADOS A GESTIÓN INTERCAMBIAN TODAS SUS TABLAS DE ROUTEO Y SE TERMINA RIP.v2
+        GR1.IntercambioTablasRouteo();
         
         
         
@@ -72,6 +110,8 @@ public class Principal {
         System.out.println(GR1.getArreglo()[1].toString());
         System.out.println(GR1.getArreglo()[2].toString());
         System.out.println(GR1.getArreglo()[3].toString());
+        System.out.println(GR1.getArreglo()[4].toString());
+        System.out.println(GR1.getArreglo()[5].toString());
         
     }
 }
