@@ -18,6 +18,8 @@ public class Ejecutar extends javax.swing.JFrame {
 
     public Ejecutar() {
         initComponents();
+        tb1 = new DefaultTableModel();
+        tb2 = new DefaultTableModel();
         tb1.addColumn("Nickname");
         this.jTable1.setModel(tb1);
         tb2.addColumn("IPv4");
@@ -64,6 +66,9 @@ public class Ejecutar extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         jTextField9.setToolTipText("");
 
@@ -125,6 +130,12 @@ public class Ejecutar extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jTextField3.setToolTipText("");
 
         jTextField4.setToolTipText("");
@@ -162,6 +173,27 @@ public class Ejecutar extends javax.swing.JFrame {
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Cargar Topología Básica");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("Cargar Topología Mediana");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Cargar Topología Compleja");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
             }
         });
 
@@ -217,20 +249,29 @@ public class Ejecutar extends javax.swing.JFrame {
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jButton6)
-                        .addGap(25, 25, 25))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 399, Short.MAX_VALUE)
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(jButton6)
+                                .addGap(25, 25, 25))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2)
+                                .addGap(20, 20, 20))))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2)
-                        .addGap(20, 20, 20))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton8)
+                            .addComponent(jButton9))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +327,13 @@ public class Ejecutar extends javax.swing.JFrame {
                             .addComponent(jButton6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton9)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -322,8 +369,6 @@ public class Ejecutar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        refR.GenerarIpsPropiasyRedesVecinas();
-        refR.InicializarTablaDeRuteo();
         refGR.IngresarRouter(refR);
         this.jTextField1.setText("");
         PoblarTabla1();
@@ -331,7 +376,369 @@ public class Ejecutar extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         refGR.IntercambioTablasRouteo();
+        PoblarTabla1();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        //PRIMERA TOPOLOGÍA EN NIVEL DE COMPLEJIDAD
+        refGR = new GestionRedes();
+        
+                            // CREACIÓN DE INTERFACES
+                Interfaz RAI1 = new Interfaz("10.0.0.0", "10.0.0.2", "255.0.0.0", "Gig0/0");
+                Interfaz RAI2 = new Interfaz("16.0.0.0", "16.0.0.1", "255.0.0.0", "Gig0/1");
+                Interfaz RAI3 = new Interfaz("20.0.0.0", "20.0.0.1", "255.0.0.0", "Gig0/2");
+
+                Interfaz RBI1 = new Interfaz("10.0.0.0", "10.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz RBI2 = new Interfaz("12.0.0.0", "12.0.0.1", "255.0.0.0", "Gig0/1");
+                Interfaz RBI3 = new Interfaz("14.0.0.0", "14.0.0.1", "255.0.0.0", "Gig0/2");
+
+                Interfaz RCI1 = new Interfaz("14.0.0.0", "14.0.0.2", "255.0.0.0", "Gig0/0/0");
+                Interfaz RCI2 = new Interfaz("22.0.0.0", "22.0.0.2", "255.0.0.0", "Gig0/0/1");
+
+                Interfaz RDI1 = new Interfaz("20.0.0.0", "20.0.0.2", "255.0.0.0", "Gig0/0/0");
+                Interfaz RDI2 = new Interfaz("22.0.0.0", "22.0.0.1", "255.0.0.0", "Gig0/0/1");
+
+                Interfaz REI1 = new Interfaz("12.0.0.0", "12.0.0.2", "255.0.0.0", "Gig0/0");
+                Interfaz REI2 = new Interfaz("16.0.0.0", "16.0.0.2", "255.0.0.0", "Gig0/1");
+                Interfaz REI3 = new Interfaz("18.0.0.0", "18.0.0.1", "255.0.0.0", "Gig0/2");
+
+                Interfaz RFI1 = new Interfaz("18.0.0.0", "18.0.0.2", "255.0.0.0", "Gig0/0/0");
+
+                
+                
+                            // CREACIÓN DE ROUTERS
+                Router RA = new Router("A");
+                Router RB = new Router("B");
+                Router RC = new Router("C");
+                Router RD = new Router("D");
+                Router RE = new Router("E");
+                Router RF = new Router("F");
+
+                
+                
+                            // INGRESO DE INTERFACES A ROUTERS Y CREACIÓN DE TABLA DE ROUTEO
+                RA.Adicionar(RAI1);
+                RA.Adicionar(RAI2);
+                RA.Adicionar(RAI3);
+
+                RB.Adicionar(RBI1);
+                RB.Adicionar(RBI2);
+                RB.Adicionar(RBI3);
+
+                RC.Adicionar(RCI1);
+                RC.Adicionar(RCI2);
+
+                RD.Adicionar(RDI1);
+                RD.Adicionar(RDI2);
+
+                RE.Adicionar(REI1);
+                RE.Adicionar(REI2);
+                RE.Adicionar(REI3);
+
+                RF.Adicionar(RFI1);
+
+                
+                
+                            // INGRESO DE ROUTERS A GESTIÓN
+                refGR.IngresarRouter(RA);
+                refGR.IngresarRouter(RB);
+                refGR.IngresarRouter(RC);
+                refGR.IngresarRouter(RD);
+                refGR.IngresarRouter(RE);
+                refGR.IngresarRouter(RF);
+
+                
+                
+                            // LOS ROUTERS INGRESADOS A GESTIÓN INTERCAMBIAN TODAS SUS TABLAS DE ROUTEO Y SE TERMINA RIP.v2
+                refGR.IntercambioTablasRouteo();
+                PoblarTabla1();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        //SEGUNDA TOPOLOGÍA EN NIVEL DE COMPLEJIDAD
+        refGR = new GestionRedes();
+        
+                            // CREACIÓN DE INTERFACES
+                Interfaz RAI1 = new Interfaz("128.1.0.0", "128.1.0.2", "255.255.0.0", "Gig0/0/0");
+
+                Interfaz RBI1 = new Interfaz("130.1.0.0", "130.1.0.2", "255.255.0.0", "Gig0/0");
+                Interfaz RBI2 = new Interfaz("128.1.0.0", "128.1.0.1", "255.255.0.0", "Gig0/1");
+                Interfaz RBI3 = new Interfaz("146.1.0.0", "146.1.0.1", "255.255.0.0", "Gig0/2");
+
+                Interfaz RCI1 = new Interfaz("130.1.0.0", "130.1.0.1", "255.255.0.0", "Gig0/0");
+                Interfaz RCI2 = new Interfaz("134.1.0.0", "134.1.0.2", "255.255.0.0", "Gig0/1");
+                Interfaz RCI3 = new Interfaz("150.1.0.0", "150.1.0.2", "255.255.0.0", "Gig0/2");
+
+                Interfaz RDI1 = new Interfaz("152.1.0.0", "152.1.0.1", "255.255.0.0", "Gig0/0");
+                Interfaz RDI2 = new Interfaz("150.1.0.0", "150.1.0.1", "255.255.0.0", "Gig0/1");
+                Interfaz RDI3 = new Interfaz("148.1.0.0", "148.1.0.1", "255.255.0.0", "Gig0/2");
+
+                Interfaz REI1 = new Interfaz("146.1.0.0", "146.1.0.2", "255.255.0.0", "Gig0/0");
+                Interfaz REI2 = new Interfaz("144.1.0.0", "144.1.0.1", "255.255.0.0", "Gig0/1");
+                Interfaz REI3 = new Interfaz("148.1.0.0", "148.1.0.2", "255.255.0.0", "Gig0/2");
+
+                Interfaz RFI1 = new Interfaz("134.1.0.0", "134.1.0.1", "255.255.0.0", "Gig0/0");
+                Interfaz RFI2 = new Interfaz("136.1.0.0", "136.1.0.2", "255.255.0.0", "Gig0/1");
+                Interfaz RFI3 = new Interfaz("132.1.0.0", "132.1.0.1", "255.255.0.0", "Gig0/2");
+
+                Interfaz RGI1 = new Interfaz("144.1.0.0", "144.1.0.2", "255.255.0.0", "Gig0/0/0");
+                Interfaz RGI2 = new Interfaz("142.1.0.0", "142.1.0.1", "255.255.0.0", "Gig0/0/1");
+
+                Interfaz RHI1 = new Interfaz("142.1.0.0", "142.1.0.2", "255.255.0.0", "Gig0/0");
+                Interfaz RHI2 = new Interfaz("152.1.0.0", "152.1.0.2", "255.255.0.0", "Gig0/1");
+                Interfaz RHI3 = new Interfaz("140.1.0.0", "140.1.0.1", "255.255.0.0", "Gig0/2");
+
+                Interfaz RII1 = new Interfaz("140.1.0.0", "140.1.0.2", "255.255.0.0", "Gig0/0");
+                Interfaz RII2 = new Interfaz("136.1.0.0", "136.1.0.1", "255.255.0.0", "Gig0/1");
+                Interfaz RII3 = new Interfaz("138.1.0.0", "138.1.0.1", "255.255.0.0", "Gig0/2");
+
+                Interfaz RJI1 = new Interfaz("132.1.0.0", "132.1.0.2", "255.255.0.0", "Gig0/0/0");
+
+                Interfaz RKI1 = new Interfaz("138.1.0.0", "138.1.0.2", "255.255.0.0", "Gig0/0/0");
+
+
+
+                            // CREACIÓN DE ROUTERS
+                Router RA = new Router("A");
+                Router RB = new Router("B");
+                Router RC = new Router("C");
+                Router RD = new Router("D");
+                Router RE = new Router("E");
+                Router RF = new Router("F");
+                Router RG = new Router("G");
+                Router RH = new Router("H");
+                Router RI = new Router("I");
+                Router RJ = new Router("J");
+                Router RK = new Router("K");
+
+
+
+                            // INGRESO DE INTERFACES A ROUTERS
+                RA.Adicionar(RAI1);
+
+                RB.Adicionar(RBI1);
+                RB.Adicionar(RBI2);
+                RB.Adicionar(RBI3);
+
+                RC.Adicionar(RCI1);
+                RC.Adicionar(RCI2);
+                RC.Adicionar(RCI3);
+
+                RD.Adicionar(RDI1);
+                RD.Adicionar(RDI2);
+                RD.Adicionar(RDI3);
+
+                RE.Adicionar(REI1);
+                RE.Adicionar(REI2);
+                RE.Adicionar(REI3);
+
+                RF.Adicionar(RFI1);
+                RF.Adicionar(RFI2);
+                RF.Adicionar(RFI3);
+
+                RG.Adicionar(RGI1);
+                RG.Adicionar(RGI2);
+
+                RH.Adicionar(RHI1);
+                RH.Adicionar(RHI2);
+                RH.Adicionar(RHI3);
+
+                RI.Adicionar(RII1);
+                RI.Adicionar(RII2);
+                RI.Adicionar(RII3);
+
+                RJ.Adicionar(RJI1);
+
+                RK.Adicionar(RKI1);
+
+
+
+                            // INGRESO DE ROUTERS A GESTIÓN
+                refGR.IngresarRouter(RA);
+                refGR.IngresarRouter(RB);
+                refGR.IngresarRouter(RC);
+                refGR.IngresarRouter(RD);
+                refGR.IngresarRouter(RE);
+                refGR.IngresarRouter(RF);
+                refGR.IngresarRouter(RG);
+                refGR.IngresarRouter(RH);
+                refGR.IngresarRouter(RI);
+                refGR.IngresarRouter(RJ);
+                refGR.IngresarRouter(RK);
+
+
+
+                            // LOS ROUTERS INGRESADOS A GESTIÓN INTERCAMBIAN TODAS SUS TABLAS DE ROUTEO Y SE TERMINA RIP.v2
+                refGR.IntercambioTablasRouteo();
+                PoblarTabla1();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        //TERCERA TOPOLOGÍA EN NIVEL DE COMPLEJIDAD
+        refGR = new GestionRedes();
+        
+                            // CREACIÓN DE INTERFACES
+                Interfaz RAI1 = new Interfaz("10.0.0.0", "10.0.0.2", "255.0.0.0", "Gig0/0");
+                Interfaz RAI2 = new Interfaz("16.0.0.0", "16.0.0.2", "255.0.0.0", "Gig0/1");
+                Interfaz RAI3 = new Interfaz("18.0.0.0", "18.0.0.1", "255.0.0.0", "Gig0/2");
+
+                Interfaz RBI1 = new Interfaz("20.0.0.0", "20.0.0.2", "255.0.0.0", "Gig0/0");
+                Interfaz RBI2 = new Interfaz("18.0.0.0", "18.0.0.2", "255.0.0.0", "Gig0/1");
+                Interfaz RBI3 = new Interfaz("24.0.0.0", "24.0.0.1", "255.0.0.0", "Gig0/2");
+
+                Interfaz RCI1 = new Interfaz("26.0.0.0", "26.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz RCI2 = new Interfaz("24.0.0.0", "24.0.0.2", "255.0.0.0", "Gig0/1");
+                Interfaz RCI3 = new Interfaz("28.0.0.0", "28.0.0.1", "255.0.0.0", "Gig0/2");
+
+                Interfaz RDI1 = new Interfaz("46.0.0.0", "46.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz RDI2 = new Interfaz("28.0.0.0", "28.0.0.2", "255.0.0.0", "Gig0/1");
+                Interfaz RDI3 = new Interfaz("48.0.0.0", "48.0.0.1", "255.0.0.0", "Gig0/2");
+
+                Interfaz REI1 = new Interfaz("16.0.0.0", "16.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz REI2 = new Interfaz("20.0.0.0", "20.0.0.1", "255.0.0.0", "Gig0/1");
+                Interfaz REI3 = new Interfaz("22.0.0.0", "22.0.0.2", "255.0.0.0", "Gig0/2");
+
+                Interfaz RFI1 = new Interfaz("32.0.0.0", "32.0.0.2", "255.0.0.0", "Gig0/0");
+                Interfaz RFI2 = new Interfaz("30.0.0.0", "30.0.0.2", "255.0.0.0", "Gig0/1");
+                Interfaz RFI3 = new Interfaz("26.0.0.0", "26.0.0.2", "255.0.0.0", "Gig0/2");
+
+                Interfaz RGI1 = new Interfaz("44.0.0.0", "44.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz RGI2 = new Interfaz("30.0.0.0", "30.0.0.1", "255.0.0.0", "Gig0/1");
+                Interfaz RGI3 = new Interfaz("48.0.0.0", "48.0.0.2", "255.0.0.0", "Gig0/2");
+
+                Interfaz RHI1 = new Interfaz("42.0.0.0", "42.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz RHI2 = new Interfaz("44.0.0.0", "44.0.0.2", "255.0.0.0", "Gig0/1");
+                Interfaz RHI3 = new Interfaz("46.0.0.0", "46.0.0.2", "255.0.0.0", "Gig0/2");
+
+                Interfaz RII1 = new Interfaz("22.0.0.0", "22.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz RII2 = new Interfaz("14.0.0.0", "14.0.0.2", "255.0.0.0", "Gig0/1");
+                Interfaz RII3 = new Interfaz("34.0.0.0", "34.0.0.2", "255.0.0.0", "Gig0/2");
+
+                Interfaz RJI1 = new Interfaz("34.0.0.0", "34.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz RJI2 = new Interfaz("36.0.0.0", "36.0.0.2", "255.0.0.0", "Gig0/1");
+                Interfaz RJI3 = new Interfaz("32.0.0.0", "32.0.0.1", "255.0.0.0", "Gig0/2");
+
+                Interfaz RKI1 = new Interfaz("40.0.0.0", "40.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz RKI2 = new Interfaz("42.0.0.0", "42.0.0.2", "255.0.0.0", "Gig0/1");
+
+                Interfaz RLI1 = new Interfaz("12.0.0.0", "12.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz RLI2 = new Interfaz("10.0.0.0", "10.0.0.1", "255.0.0.0", "Gig0/1");
+
+                Interfaz RMI1 = new Interfaz("12.0.0.0", "12.0.0.2", "255.0.0.0", "Gig0/0");
+                Interfaz RMI2 = new Interfaz("14.0.0.0", "14.0.0.1", "255.0.0.0", "Gig0/1");
+
+                Interfaz RNI1 = new Interfaz("36.0.0.0", "36.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz RNI2 = new Interfaz("38.0.0.0", "38.0.0.2", "255.0.0.0", "Gig0/1");
+
+                Interfaz ROI1 = new Interfaz("38.0.0.0", "38.0.0.1", "255.0.0.0", "Gig0/0");
+                Interfaz ROI2 = new Interfaz("40.0.0.0", "40.0.0.2", "255.0.0.0", "Gig0/1");
+
+
+
+                            // CREACIÓN DE ROUTERS
+                Router RA = new Router("A");
+                Router RB = new Router("B");
+                Router RC = new Router("C");
+                Router RD = new Router("D");
+                Router RE = new Router("E");
+                Router RF = new Router("F");
+                Router RG = new Router("G");
+                Router RH = new Router("H");
+                Router RI = new Router("I");
+                Router RJ = new Router("J");
+                Router RK = new Router("K");
+                Router RL = new Router("L");
+                Router RM = new Router("M");
+                Router RN = new Router("N");
+                Router RO = new Router("O");
+
+
+
+                            // INGRESO DE INTERFACES A ROUTERS
+                RA.Adicionar(RAI1);
+                RA.Adicionar(RAI2);
+                RA.Adicionar(RAI3);
+
+                RB.Adicionar(RBI1);
+                RB.Adicionar(RBI2);
+                RB.Adicionar(RBI3);
+
+                RC.Adicionar(RCI1);
+                RC.Adicionar(RCI2);
+                RC.Adicionar(RCI3);
+
+                RD.Adicionar(RDI1);
+                RD.Adicionar(RDI2);
+                RD.Adicionar(RDI3);
+
+                RE.Adicionar(REI1);
+                RE.Adicionar(REI2);
+                RE.Adicionar(REI3);
+
+                RF.Adicionar(RFI1);
+                RF.Adicionar(RFI2);
+                RF.Adicionar(RFI3);
+
+                RG.Adicionar(RGI1);
+                RG.Adicionar(RGI2);
+                RG.Adicionar(RGI3);
+
+                RH.Adicionar(RHI1);
+                RH.Adicionar(RHI2);
+                RH.Adicionar(RHI3);
+
+                RI.Adicionar(RII1);
+                RI.Adicionar(RII2);
+                RI.Adicionar(RII3);
+
+                RJ.Adicionar(RJI1);
+                RJ.Adicionar(RJI2);
+                RJ.Adicionar(RJI3);
+
+                RK.Adicionar(RKI1);
+                RK.Adicionar(RKI2);
+
+                RL.Adicionar(RLI1);
+                RL.Adicionar(RLI2);
+
+                RM.Adicionar(RMI1);
+                RM.Adicionar(RMI2);
+
+                RN.Adicionar(RNI1);
+                RN.Adicionar(RNI2);
+
+                RO.Adicionar(ROI1);
+                RO.Adicionar(ROI2);
+
+
+
+                            // INGRESO DE ROUTERS A GESTIÓN
+                refGR.IngresarRouter(RA);
+                refGR.IngresarRouter(RB);
+                refGR.IngresarRouter(RC);
+                refGR.IngresarRouter(RD);
+                refGR.IngresarRouter(RE);
+                refGR.IngresarRouter(RF);
+                refGR.IngresarRouter(RG);
+                refGR.IngresarRouter(RH);
+                refGR.IngresarRouter(RI);
+                refGR.IngresarRouter(RJ);
+                refGR.IngresarRouter(RK);
+                refGR.IngresarRouter(RL);
+                refGR.IngresarRouter(RM);
+                refGR.IngresarRouter(RN);
+                refGR.IngresarRouter(RO);
+
+
+
+                            // LOS ROUTERS INGRESADOS A GESTIÓN INTERCAMBIAN TODAS SUS TABLAS DE ROUTEO Y SE TERMINA RIP.v2
+                refGR.IntercambioTablasRouteo();
+                PoblarTabla1();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     public void Objeto(String nom) {
         refR = new Router(nom);
@@ -372,7 +779,7 @@ public class Ejecutar extends javax.swing.JFrame {
                     datos[0] = arreglo[i].RTip[j];
                     datos[1] = arreglo[i].RTred[j];
                     datos[2] = arreglo[i].RTnombreRouter[j];
-                    //datos[3] = arreglo[i].RTnombreSalida[j];
+                    datos[3] = arreglo[i].RTnombreSalida[j];
                     datos[4] = arreglo[i].RTinterfazSalida[j];
                     datos[5] = arreglo[i].RTnextHop[j];
                     datos[6] = String.valueOf(arreglo[i].RThop[j]);
@@ -414,6 +821,7 @@ public class Ejecutar extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Ejecutar().setVisible(true);
+                
             }
         });
     }
@@ -425,6 +833,9 @@ public class Ejecutar extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
