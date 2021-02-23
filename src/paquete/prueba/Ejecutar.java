@@ -7,9 +7,7 @@ import paquete.gestion.*;
 
 public class Ejecutar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Ejecutar
-     */
+
     private DefaultTableModel tb1;
     private DefaultTableModel tb2;
 
