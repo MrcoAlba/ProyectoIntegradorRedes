@@ -73,6 +73,10 @@ public class Ejecutar extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         jTextField9.setToolTipText("");
 
@@ -217,6 +221,14 @@ public class Ejecutar extends javax.swing.JFrame {
             }
         });
 
+        jLabel16.setText("Tiempo (Segundos) Respuesta:");
+
+        jLabel17.setText("------");
+
+        jLabel18.setText("------");
+
+        jLabel19.setText("------");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -261,11 +273,6 @@ public class Ejecutar extends javax.swing.JFrame {
                                 .addComponent(jButton3)))
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel5)
-                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,29 +284,40 @@ public class Ejecutar extends javax.swing.JFrame {
                                             .addComponent(jLabel4)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(1, 1, 1)))
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
+                            .addComponent(jLabel12)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel15)))
+                                .addGap(237, 237, 237)
+                                .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel15)))
-                        .addGap(237, 237, 237)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jButton6))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(jButton6))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19))
                 .addGap(0, 18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -313,18 +331,18 @@ public class Ejecutar extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel15)
                                         .addComponent(jLabel13)
                                         .addComponent(jLabel11)
                                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton6)))
+                                        .addComponent(jButton6))
+                                    .addComponent(jLabel12))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1)))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -366,16 +384,24 @@ public class Ejecutar extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton9)))))
-                .addContainerGap(117, Short.MAX_VALUE))
+                                .addComponent(jButton10)))))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel16))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7)
+                    .addComponent(jLabel17))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8)
+                    .addComponent(jLabel18))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9)
+                    .addComponent(jLabel19))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
@@ -497,7 +523,21 @@ public class Ejecutar extends javax.swing.JFrame {
                 
                 
                             // LOS ROUTERS INGRESADOS A GESTIÓN INTERCAMBIAN TODAS SUS TABLAS DE ROUTEO Y SE TERMINA RIP.v2
+                long T1inicio=0,T1fin=0;
+                double T1tiempoTranscurrido=0;
+                float T1tiempoCorto=0;
+                
+                            //EN ESTE MOMENTO SE COMENZARÁ EL CRONÓMETRO PORQUE DESDE AQUÍ SE INTERCAMBIAN LAS TABLAS DE ROUTEO
+                T1inicio=System.nanoTime();
                 refGR.IntercambioTablasRouteo();
+                T1fin=System.nanoTime();
+                            //EN ESTE MOMENTO SE PAUSA EL CRONÓMETRO PORQUE YA SE TERMINARON DE COMPARTIR TODAS LAS TABLAS DE ROUTEO
+                            
+                T1tiempoTranscurrido=(double)(T1fin-T1inicio)*(1.0e-9);
+                T1tiempoCorto = (float) T1tiempoTranscurrido;
+                if(this.jLabel17.getText().equalsIgnoreCase("------")){
+                    this.jLabel17.setText(Float.toString(T1tiempoCorto));
+                }
                 PoblarTabla1();
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -616,7 +656,21 @@ public class Ejecutar extends javax.swing.JFrame {
 
 
                             // LOS ROUTERS INGRESADOS A GESTIÓN INTERCAMBIAN TODAS SUS TABLAS DE ROUTEO Y SE TERMINA RIP.v2
+                long T2inicio=0,T2fin=0;
+                double T2tiempoTranscurrido=0;
+                float T2tiempoCorto=0;
+                
+                            //EN ESTE MOMENTO SE COMENZARÁ EL CRONÓMETRO PORQUE DESDE AQUÍ SE INTERCAMBIAN LAS TABLAS DE ROUTEO
+                T2inicio=System.nanoTime();
                 refGR.IntercambioTablasRouteo();
+                T2fin=System.nanoTime();
+                            //EN ESTE MOMENTO SE PAUSA EL CRONÓMETRO PORQUE YA SE TERMINARON DE COMPARTIR TODAS LAS TABLAS DE ROUTEO
+                            
+                T2tiempoTranscurrido=(double)(T2fin-T2inicio)*(1.0e-9);
+                T2tiempoCorto = (float) T2tiempoTranscurrido;
+                if(this.jLabel18.getText().equalsIgnoreCase("------")){
+                    this.jLabel18.setText(Float.toString(T2tiempoCorto));
+                }
                 PoblarTabla1();
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -778,8 +832,22 @@ public class Ejecutar extends javax.swing.JFrame {
 
 
 
-                            // LOS ROUTERS INGRESADOS A GESTIÓN INTERCAMBIAN TODAS SUS TABLAS DE ROUTEO Y TERMINA RIP.v2
+                            // LOS ROUTERS INGRESADOS A GESTIÓN INTERCAMBIAN TODAS SUS TABLAS DE ROUTEO Y SE TERMINA RIP.v2
+                long T3inicio=0,T3fin=0;
+                double T3tiempoTranscurrido=0;
+                float T3tiempoCorto=0;
+                
+                            //EN ESTE MOMENTO SE COMENZARÁ EL CRONÓMETRO PORQUE DESDE AQUÍ SE INTERCAMBIAN LAS TABLAS DE ROUTEO
+                T3inicio=System.nanoTime();
                 refGR.IntercambioTablasRouteo();
+                T3fin=System.nanoTime();
+                            //EN ESTE MOMENTO SE PAUSA EL CRONÓMETRO PORQUE YA SE TERMINARON DE COMPARTIR TODAS LAS TABLAS DE ROUTEO
+                            
+                T3tiempoTranscurrido=(double)(T3fin-T3inicio)*(1.0e-9);
+                T3tiempoCorto = (float) T3tiempoTranscurrido;
+                if(this.jLabel19.getText().equalsIgnoreCase("------")){
+                    this.jLabel19.setText(Float.toString(T3tiempoCorto));
+                }
                 PoblarTabla1();
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -898,6 +966,10 @@ public class Ejecutar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
