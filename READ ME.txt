@@ -1,0 +1,11 @@
+INSTRUCCIONES DE EJECUCIÓN DEL PROGRAMA:
+
+- Utilizar el IDE "NetBeans IDE 8.2"
+- Descargar utilitarios de "java version "1.8.0_261""
+- Ejecutar el paquete "paquete.prueba.Ejecutar"
+
+
+
+ARCHIVOS QUE SE DESCARGARÁN DE GITHUB:
+
+se descargará el programa a ejecutar y las tres topologías utilizadas como referencia en formato .pkt (Cisco Packet Tracer)
